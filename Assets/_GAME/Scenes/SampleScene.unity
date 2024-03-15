@@ -1139,6 +1139,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementDirection: {x: 0, y: 0, z: 0}
+  runSpeed: 10
   walkSpeed: 5
   aim: {fileID: 1248807240}
   aimLayerMask:
