@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    Player player;
+
     private PlayerControls playerControls;
     CharacterController characterController;
     public Vector3 movementDirection;
@@ -28,17 +30,13 @@ public class PlayerMovement : MonoBehaviour
     AnimatorClipInfo[] animatorinfo;
     string current_animation;
 
-    private void Awake()
-    {
-        AssingInputEvents();
-
-    }
-
-
     private void Start()
     {
+        player = GetComponent<Player>();
         characterController = GetComponent<CharacterController>();
         animator= GetComponentInChildren<Animator>();
+        speed = walkSpeed;
+        AssingInputEvents();
     }
     private void Update()
     {
@@ -80,7 +78,7 @@ public class PlayerMovement : MonoBehaviour
 
             transform.forward = lookingDirection;
 
-            aim.position = new Vector3(hitInfo.point.x, transform.position.y, hitInfo.point.z);
+            aim.position = new Vector3(hitInfo.point.x, transform.position.y+1, hitInfo.point.z);
         }
     }
 
@@ -109,7 +107,7 @@ public class PlayerMovement : MonoBehaviour
     #region new ýnput system
     private void AssingInputEvents()
     {
-        playerControls = new PlayerControls();
+        playerControls = player.controls;
 
         playerControls.Character.Fire.performed += context => Shoot();
 
@@ -130,15 +128,6 @@ public class PlayerMovement : MonoBehaviour
             speed = walkSpeed;
             isRunning = false;
         };
-    }
-    private void OnEnable()
-    {
-        playerControls.Enable();
-
-    }
-    private void OnDisable()
-    {
-        playerControls.Disable();
     }
     #endregion
 }
