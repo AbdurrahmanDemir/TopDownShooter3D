@@ -949,6 +949,8 @@ MonoBehaviour:
   autoRifle: {fileID: 687652189}
   shotgun: {fileID: 687738830}
   rifle: {fileID: 1842339567}
+  rigIncreaseStep: 3
+  rigShouldBeIncreased: 0
 --- !u!1 &1565621304
 GameObject:
   m_ObjectHideFlags: 0
@@ -2979,6 +2981,7 @@ GameObject:
   - component: {fileID: 7180120047866602573}
   - component: {fileID: 7561325559331929848}
   - component: {fileID: 7561325559331929849}
+  - component: {fileID: 7561325559331929850}
   m_Layer: 0
   m_Name: character_main
   m_TagString: Untagged
@@ -3022,6 +3025,18 @@ MonoBehaviour:
   - m_Rig: {fileID: 1874086735}
     m_Active: 1
   m_Effectors: []
+--- !u!114 &7561325559331929850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7561325559331929847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 827b210ce4f1dd24a94acf71d93b389e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7722354795367783852
 GameObject:
   m_ObjectHideFlags: 0

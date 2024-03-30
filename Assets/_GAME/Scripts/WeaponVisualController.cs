@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations.Rigging;
 
 public class WeaponVisualController : MonoBehaviour
 {
     Animator anim;
+    Rig rig;
     [SerializeField] private Transform[] guns;
 
     [SerializeField] private Transform pistol;
@@ -13,13 +15,37 @@ public class WeaponVisualController : MonoBehaviour
     [SerializeField] private Transform shotgun;
     [SerializeField] private Transform rifle;
 
+    [SerializeField] private float rigIncreaseStep;
+    public bool rigShouldBeIncreased;
+
     private void Start()
     {
+        rig= GetComponentInParent<Rig>();
         anim= GetComponentInParent<Animator>();
         SwitchOn(pistol);
     }
 
     private void Update()
+    {
+        SwitchGuns();
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            anim.SetTrigger("Reload");
+            //rig.weight = .15f;
+        }
+        //if (rigShouldBeIncreased)
+        //{
+        //    rig.weight+= rigIncreaseStep*Time.deltaTime;
+
+        //    if(rig.weight>=1)
+        //        rigShouldBeIncreased=false;
+        //}
+
+    }
+
+    public void ReturnRigWeightToOne() => rigShouldBeIncreased = true;
+
+    private void SwitchGuns()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
@@ -48,8 +74,8 @@ public class WeaponVisualController : MonoBehaviour
             SwitchOn(rifle);
             SwichAnimationLayer(3);
         }
-
     }
+
     void SwitchOn(Transform gunTransform)
     {
         SwitchOff();
